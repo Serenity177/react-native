@@ -14,7 +14,7 @@ export default function App() {
       <Pressable onPress={() => {setModalVisible(true)}} style={styles.btnNuevaCita}>
         <Text style={styles.btnTextoNuevaCita}>Nueva Cita</Text>
       </Pressable>
-      <Formulario modalVisible={modalVisible}/>
+      <Formulario modalVisible={modalVisible} setAction={setModalVisible}/>
     </SafeAreaView>
   );
 }
