@@ -6,6 +6,7 @@ import Formulario from './src/components/Formulario';
 export default function App() {
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [pacientes, setPacientes] = useState();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -14,7 +15,7 @@ export default function App() {
       <Pressable onPress={() => {setModalVisible(true)}} style={styles.btnNuevaCita}>
         <Text style={styles.btnTextoNuevaCita}>Nueva Cita</Text>
       </Pressable>
-      <Formulario modalVisible={modalVisible} setAction={setModalVisible}/>
+      <Formulario modalVisible={modalVisible} setModalVisible={setModalVisible} setPacientes={setPacientes}/>
     </SafeAreaView>
   );
 }

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, Button, Alert } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
 
-function Formulario({ modalVisible, setAction}) {
+function Formulario({ modalVisible, setModalVisible}) {
 
     const [paciente, setPaciente] = useState('')
     const [propietario, setPropietario] = useState('')
@@ -69,7 +69,7 @@ function Formulario({ modalVisible, setAction}) {
                 </Modal>
 
                 <View style={styles.containerBotones}>
-                    <Button style={styles.botonAgregar} title="Agregar Cita" onPress={() => setAction(!modalVisible)}/>
+                    <Button style={styles.botonAgregar} title="Agregar Cita" onPress={() => setModalVisible(!modalVisible)}/>
                     <Button style={styles.botonCancelar} title="Cancelar" onPress={() => Alert.alert('jijiji')}/>
                 </View>
             </SafeAreaView>
