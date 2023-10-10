@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, Button, Alert } from "react-native";
+import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, Button, Alert, Pressable, TouchableOpacity } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
 
 function Formulario({ modalVisible, setAction}) {
@@ -36,7 +36,13 @@ function Formulario({ modalVisible, setAction}) {
                     <Text style={styles.label}>Sintomas: </Text>
                     <TextInput style={styles.input} placeholder="Sintomas" placeholderTextColor={'#646464'} keyboardType="number-pad" value={sintomas} onChange={setSintomas}></TextInput>
                 </View>
-
+                <Pressable setOpen={true} onPress={() => {setOpen(true)}}>
+                    <View style={styles.campo}>
+                        <Text style={styles.label}>Fecha: </Text>
+                        <TextInput style={styles.input} placeholder="Fecha:" placeholderTextColor={'#646464'} value={sintomas} editable={false}></TextInput>
+                    </View>
+                </Pressable>
+                
                 <Modal animationType='noneR'
                     onDismiss={() => console.log('cerrado')}
                     onShow={() => console.log('show')}
@@ -55,8 +61,8 @@ function Formulario({ modalVisible, setAction}) {
                                     borderColor: 'rgba(122, 146, 165, 0.1)',
 
                                 }}
-                                current="2020-07-13"
-                                selected="2020-07-23"
+                                current="2023-10-8"
+                                selected="2023-10-7"
                                 mode="calendar"
                                 minuteInterval={30}
                                 style={{
@@ -64,14 +70,14 @@ function Formulario({ modalVisible, setAction}) {
                                     width: '90%', alignSelf: "center"
                                 }}
                             />
+                            <TouchableOpacity onPress={() => {setOpen(false)}}>
+                                <Text style={{ color: '#fff'}}>Cerrar</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
-
-                <View style={styles.containerBotones}>
-                    <Button style={styles.botonAgregar} title="Agregar Cita" onPress={() => setAction(!modalVisible)}/>
-                    <Button style={styles.botonCancelar} title="Cancelar" onPress={() => Alert.alert('jijiji')}/>
-                </View>
+                    <Button style={[styles.botonAgregar, {}]}  title="Agregar Cita" onPress={() => setAction(!modalVisible)}/>
+                    <Button style={styles.botonCancelar} title="Cancelar" onPress={() => setAction(!modalVisible)}/>
             </SafeAreaView>
         </Modal>
     )
@@ -105,13 +111,15 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     botonAgregar: {
+        padding: 20,
         marginLeft: 20,
         marginRight: 20,
         textAlign: "center",
-        backgroundColor: '#049615',
+        backgroundColor: '#1c7c04',
         borderRadius: 10,
     },
     botonCancelar: {
+        marginLeft: 20,
         textAlign: "center",
         backgroundColor: '#f61010ea',
         borderRadius: 10,
