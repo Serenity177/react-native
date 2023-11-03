@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-import Formulario from './src/components/Formulario';
+import Formulario from './components/Formulario';
 
 export default function App() {
 

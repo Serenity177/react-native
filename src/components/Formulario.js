@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-
-import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, Button, Alert, Pressable, TouchableOpacity } from "react-native";
 import DatePicker from 'react-native-modern-datepicker';
+import { Modal, SafeAreaView, StyleSheet, Text, TextInput, View, Pressable, TouchableOpacity } from "react-native";
 
-function Formulario({ modalVisible, setModalVisible}) {
+function Formulario({ modalVisible, setModalVisible, setAction}) {
 
     const [paciente, setPaciente] = useState('')
     const [propietario, setPropietario] = useState('')
@@ -19,23 +18,23 @@ function Formulario({ modalVisible, setModalVisible}) {
                 <View ><Text style={styles.tituloChido}>Nueva Cita </Text></View>
                 <View style={styles.campo}>
                     <Text style={styles.label}>Nombre del paciente: </Text>
-                    <TextInput style={styles.input} placeholder="Nombre del paciente" placeholderTextColor={'#646464'} value={paciente} onChange={setPaciente}></TextInput>
+                    <TextInput style={styles.input} placeholder="Nombre del paciente" placeholderTextColor={'#646464'} value={paciente} onChangeText={setPaciente}></TextInput>
                 </View>
                 <View style={styles.campo}>
                     <Text style={styles.label}>Nombre del propietario: </Text>
-                    <TextInput style={styles.input} placeholder="Nombre del propietario" placeholderTextColor={'#646464'} value={propietario} onChange={setPropietario}></TextInput>
+                    <TextInput style={styles.input} placeholder="Nombre del propietario" placeholderTextColor={'#646464'} value={propietario} onChangeText={setPropietario}></TextInput>
                 </View>
                 <View style={styles.campo}>
                     <Text style={styles.label}>Email del propietario: </Text>
-                    <TextInput style={styles.input} placeholder="Email del propietario" placeholderTextColor={'#646464'} keyboardType="email-address" value={email} onChange={setEmail}></TextInput>
+                    <TextInput style={styles.input} placeholder="Email del propietario" placeholderTextColor={'#646464'} keyboardType="email-address" value={email} onChangeText={setEmail}></TextInput>
                 </View>
                 <View style={styles.campo}>
                     <Text style={styles.label}>Teléfono del propietario: </Text>
-                    <TextInput style={styles.input} placeholder="Teléfono del propietario" placeholderTextColor={'#646464'} keyboardType="number-pad" value={telefono} onChange={setTelefono}></TextInput>
+                    <TextInput style={styles.input} placeholder="Teléfono del propietario" placeholderTextColor={'#646464'} keyboardType="number-pad" value={telefono} onChangeText={setTelefono}></TextInput>
                 </View>
                 <View style={styles.campo}>
                     <Text style={styles.label}>Sintomas: </Text>
-                    <TextInput style={styles.input} placeholder="Sintomas" placeholderTextColor={'#646464'} keyboardType="number-pad" value={sintomas} onChange={setSintomas}></TextInput>
+                    <TextInput style={styles.input} placeholder="Sintomas" placeholderTextColor={'#646464'} keyboardType="number-pad" value={sintomas} onChangeText={setSintomas}></TextInput>
                 </View>
                 <Pressable setOpen={true} onPress={() => {setOpen(true)}}>
                     <View style={styles.campo}>
@@ -62,7 +61,6 @@ function Formulario({ modalVisible, setModalVisible}) {
                                     borderColor: 'rgba(122, 146, 165, 0.1)',
 
                                 }}
-                                current="2023-10-8"
                                 selected="2023-10-7"
                                 mode="calendar"
                                 minuteInterval={30}
@@ -70,15 +68,16 @@ function Formulario({ modalVisible, setModalVisible}) {
                                     borderRadius: 10,
                                     width: '90%', alignSelf: "center"
                                 }}
+                                onSelectedChange={date => setFecha(date)}
                             />
                             <TouchableOpacity onPress={() => {setOpen(false)}}>
-                                <Text style={{ color: '#fff'}} onPress={() => {setFecha(selected)}}>Cerrar</Text>
+                                <Text style={{ color: '#fff'}}>Cerrar</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
                     <TouchableOpacity style={styles.botonAgregar} onPress={() => setAction(!modalVisible)}>
-                        <Text>Agregar cita</Text>
+                        <Text> Agregar cita</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.botonCancelar} onPress={() => setAction(!modalVisible)}>
                         <Text style={{ color: '#fff'}}>Cancelar</Text>
